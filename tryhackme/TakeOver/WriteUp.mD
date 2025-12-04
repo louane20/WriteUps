@@ -33,11 +33,11 @@ As instructed by TryHackMe, we first map the machine's IP address to the main do
 
 ```bash
 sudo nano /etc/hosts
-````
+```
 
 ```
 target-ip    futurevera.thm
-
+```
 ---
 
 ## Exploring the Main Website
