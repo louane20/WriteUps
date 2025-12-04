@@ -41,6 +41,7 @@ target-ip    futurevera.thm
 ---
 
 ## Exploring the Main Website
+<img width="1100" height="549" alt="image" src="https://github.com/user-attachments/assets/a684a068-cf35-4192-8aea-e89c6e01a896" />
 
 Visiting `https://futurevera.thm/` shows… almost nothing.
 This is expected — the room description hints that your goal is to discover subdomains.
@@ -58,6 +59,7 @@ ffuf -w /snap/seclists/current/Discovery/DNS/subdomains-top1million-110000.txt \
      -u https://target-ip/ \
      -fs 4605
 ```
+<img width="1100" height="612" alt="image" src="https://github.com/user-attachments/assets/e3f70488-5db7-4753-8a1d-b9875fac920e" />
 
 ### 🔍 Why `-fs 4605`?
 
@@ -83,11 +85,14 @@ target-ip support.futurevera.thm
 ## Investigating the Subdomains
 
 ### 🔹 Blog Subdomain
+<img width="1100" height="534" alt="image" src="https://github.com/user-attachments/assets/527f1940-9070-40e2-9fb5-a345d7c67896" />
 
 The blog subdomain loads correctly but contains nothing exploitable.
 Nothing interesting in the source code, no hidden directories — dead end.
 
 ### 🔹 Support Subdomain
+<img width="1100" height="592" alt="image" src="https://github.com/user-attachments/assets/19bfb6a3-a075-4661-ae81-6773b29a579f" />
+
 
 Accessing `https://support.futurevera.thm/` in Chrome or Edge results in:
 
@@ -98,6 +103,8 @@ ERR_SSL_KEY_USAGE_INCOMPATIBLE
 This happens because the server uses an improperly configured certificate.
 
 ### 🦊 Solution: Use Firefox
+<img width="1100" height="537" alt="image" src="https://github.com/user-attachments/assets/0dff1c2a-bb22-4699-b33d-46b647b536e7" />
+
 
 Firefox allows bypassing this kind of SSL misconfiguration.
 Once you open the support subdomain with Firefox and accept the certificate risk, the page loads correctly.
@@ -107,6 +114,8 @@ Once you open the support subdomain with Firefox and accept the certificate risk
 ## The Hidden Clue
 
 On the Support page, check the certificate details.
+<img width="1904" height="916" alt="image" src="https://github.com/user-attachments/assets/e47dc8bd-c64d-4443-82ab-bcca119f79fd" />
+
 Inside the certificate, we find an additional domain name listed under the **Subject Alternative Name (SAN)** field.
 
 Add that new hostname to your `/etc/hosts` file:
@@ -122,6 +131,8 @@ https://secrethelpdesk934752.support.futurevera.thm
 ```
 
 💥 This is where the final flag is located.
+<img width="993" height="370" alt="image" src="https://github.com/user-attachments/assets/f29fd0e9-468b-4b6f-8076-a599334835b2" />
+
 
 ### 🔎 What Is the SAN Field and Why It Matters?
 
