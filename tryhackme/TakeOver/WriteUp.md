@@ -114,7 +114,7 @@ Once you open the support subdomain with Firefox and accept the certificate risk
 ## The Hidden Clue
 
 On the Support page, check the certificate details.
-<img width="1904" height="916" alt="image" src="https://github.com/user-attachments/assets/e47dc8bd-c64d-4443-82ab-bcca119f79fd" />
+<img width="1904" height="916" alt="image" src="https://github.com/user-attachments/assets/95fbbf82-a6d0-47a0-8776-09b81c583383" />
 
 Inside the certificate, we find an additional domain name listed under the **Subject Alternative Name (SAN)** field.
 
